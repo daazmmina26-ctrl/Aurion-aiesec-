@@ -19,66 +19,93 @@ font-family:Poppins,sans-serif;
 body{
 background:#050814;
 color:white;
-overflow:hidden;
+overflow-x:hidden;
 }
 
 /* BACKGROUND */
-.stars{
+.bg{
 position:fixed;
-width:100%;
-height:100%;
-z-index:-1;
+inset:0;
 background:radial-gradient(circle at top,#0b1a3a,#050814);
+z-index:-2;
 }
 
-/* PAGES */
-.page{
-position:absolute;
+/* FLOATING ORBS */
+.orb{
+position:fixed;
+width:300px;
+height:300px;
+border-radius:50%;
+background:radial-gradient(circle,#00c2ff33,transparent);
+filter:blur(40px);
+animation:float 8s infinite ease-in-out;
+z-index:-1;
+}
+
+.orb.one{top:10%;left:5%;}
+.orb.two{bottom:10%;right:10%;animation-delay:2s;}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(40px);}
+}
+
+/* NAV */
+nav{
+position:fixed;
 top:0;
 left:0;
 width:100%;
-height:100%;
-display:none;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 50px;
+backdrop-filter:blur(12px);
+background:rgba(0,0,0,0.25);
+z-index:10;
+}
+
+nav h1{
+font-size:16px;
+letter-spacing:4px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+opacity:0.8;
+}
+
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-flex-direction:column;
 text-align:center;
 padding:20px;
 }
 
-.page.active{
-display:flex;
-animation:fade 0.6s ease;
-}
-
-@keyframes fade{
-from{opacity:0; transform:translateY(20px);}
-to{opacity:1; transform:translateY(0);}
-}
-
-/* TEXT */
-h1{
-font-size:3.5rem;
+.hero h1{
+font-size:4rem;
 background:linear-gradient(90deg,#fff,#00c2ff,#b400ff);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+animation:fadeUp 1s ease;
 }
 
-h2{
-color:#00c2ff;
-margin-bottom:15px;
-}
-
-p{
+.hero p{
 max-width:600px;
-opacity:0.9;
-line-height:1.7;
+margin-top:20px;
+opacity:0.8;
+line-height:1.8;
+animation:fadeUp 1.2s ease;
 }
 
-/* BUTTON */
-button{
-margin-top:25px;
-padding:12px 25px;
+.cta{
+margin-top:30px;
+padding:14px 30px;
 border:none;
 border-radius:30px;
 background:linear-gradient(90deg,#00c2ff,#b400ff);
@@ -86,180 +113,142 @@ color:white;
 font-weight:600;
 cursor:pointer;
 transition:0.3s;
+animation:fadeUp 1.4s ease;
 }
 
-button:hover{
-transform:scale(1.1);
-box-shadow:0 0 15px #00c2ff;
+.cta:hover{
+transform:scale(1.08);
+box-shadow:0 0 25px #00c2ff;
 }
 
-/* LOGO */
-.logo{
-width:130px;
-margin:25px 0;
-filter:drop-shadow(0 0 15px #00c2ff);
-transition:0.3s;
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
 }
 
-.logo:hover{
-transform:scale(1.1) rotate(3deg);
+/* SECTIONS */
+section{
+padding:120px 20px;
+max-width:900px;
+margin:auto;
+text-align:center;
+opacity:0;
+transform:translateY(40px);
+transition:1s ease;
 }
 
-/* MEANING BOX */
-.meaning-box{
-margin-top:20px;
-display:flex;
-flex-direction:column;
-gap:12px;
-text-align:left;
+section.show{
+opacity:1;
+transform:translateY(0);
 }
 
-.item{
-display:flex;
-align-items:center;
-gap:12px;
-background:rgba(255,255,255,0.04);
-padding:12px;
-border-radius:10px;
-}
-
-.icon{
-font-size:1.4rem;
+h2{
 color:#00c2ff;
+margin-bottom:20px;
+font-size:2rem;
+}
+
+p{
+opacity:0.85;
+line-height:1.8;
+}
+
+/* CARD */
+.card{
+margin-top:20px;
+padding:20px;
+border-radius:15px;
+background:rgba(255,255,255,0.05);
+}
+
+/* FOOTER */
+footer{
+padding:60px;
+text-align:center;
+opacity:0.5;
 }
 </style>
 </head>
 
 <body>
 
-<div class="stars"></div>
+<div class="bg"></div>
+<div class="orb one"></div>
+<div class="orb two"></div>
 
-<!-- PAGE 1 -->
-<div class="page active" id="page1">
+<nav>
 <h1>AURION</h1>
+<a href="#join">Join</a>
+</nav>
 
+<!-- HERO -->
+<div class="hero">
+<h1>Step Out. Grow Beyond.</h1>
 <p>
-Step out. Grow beyond. Become AURION.
-<br><br>
-"You were never meant to stay in one orbit."
+AURION is a mindset — born from the moment you decide
+to leave your comfort zone and aim higher than you ever imagined.
 </p>
 
-<button onclick="nextPage(2)">Start</button>
+<button class="cta" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+Discover AURION
+</button>
 </div>
 
-<!-- PAGE 2 -->
-<div class="page" id="page2">
+<!-- ABOUT -->
+<section id="about">
 <h2>What is AURION?</h2>
-
 <p>
-AURION represents the moment a person steps out of their comfort zone
-and begins their journey toward growth and self-discovery.
-<br><br>
-
-AURION comes from two ideas:
-<br><br>
-
-<strong>Aura</strong> — your inner energy, potential, and identity.
-<br><br>
-
-<strong>Orion</strong> — a constellation that represents exploration, direction, and aiming higher.
-<br><br>
-
-Together, AURION means using your inner potential to go beyond your limits.
-<br><br>
-
-Think of it like this:
-your Aura is your inner map,
-and Orion is your destination in the stars.
-<br><br>
-
-AURION is the moment you stop saying
-<em>"maybe one day"</em>
-and take the first step 🚀✨
+AURION represents the moment you break your limits and start your journey toward growth.
 </p>
 
-<button onclick="nextPage(3)">Next</button>
+<div class="card">
+<strong>Aura</strong> = your inner energy and potential<br><br>
+<strong>Orion</strong> = the constellation of ambition and direction<br><br>
+Together: turning inner potential into real direction.
 </div>
+</section>
 
-<!-- PAGE 3 -->
-<div class="page" id="page3">
-<h2>The Logo Meaning</h2>
-
-<div class="meaning-box">
-
-<div class="item">
-<span class="icon">◯</span>
-<p><strong>Circle:</strong> Comfort zone</p>
-</div>
-
-<div class="item">
-<span class="icon">➚</span>
-<p><strong>Path:</strong> Growth journey</p>
-</div>
-
-<div class="item">
-<span class="icon">🚶</span>
-<p><strong>Figure:</strong> Taking the first step</p>
-</div>
-
-<div class="item">
-<span class="icon">✦</span>
-<p><strong>Star:</strong> New opportunities</p>
-</div>
-
-</div>
-
-<img src="file_00000000c11872439eaec95d9b1e6a1f.png" class="logo">
-
-<button onclick="nextPage(4)">Next</button>
-</div>
-
-<!-- PAGE 4 -->
-<div class="page" id="page4">
-<h2>Growth Philosophy</h2>
-
+<!-- WHY -->
+<section>
+<h2>Why AURION?</h2>
 <p>
-Real growth begins when comfort ends.
-Leadership begins when uncertainty starts.
+Because most people wait for the perfect moment.
+AURION is choosing to start anyway.
+</p>
+</section>
+
+<!-- JOIN -->
+<section id="join">
+<h2>Become AURION</h2>
+<p>
+If you're ready to step beyond your comfort zone,
+this is your moment.
 </p>
 
-<button onclick="nextPage(5)">Next</button>
-</div>
+<button class="cta" onclick="window.open('https://www.instagram.com/lc.oran?igsh=MTlvampoMnZqeGFjNw==')">
+Join the Movement
+</button>
+</section>
 
-<!-- PAGE 5 -->
-<div class="page" id="page5">
-<h2>My Experience</h2>
-
-<p>
-Through AIESEC, I realized that growth is not comfortable.
-This project reflects my personal journey of stepping out,
-meeting new people, and discovering new perspectives.
-<br><br>
-
-<strong>“Do one thing every day that scares you.” — Eleanor Roosevelt</strong>
-</p>
-
-<button onclick="nextPage(6)">Next</button>
-</div>
-
-<!-- PAGE 6 -->
-<div class="page" id="page6">
-<h2>Step out of your orbit.</h2>
-
-<p>Your universe is waiting.</p>
-
-<a href="https://www.instagram.com/lc.oran?igsh=MTlvampoMnZqeGFjNw==" target="_blank">
-<button>Become AURION</button>
-</a>
-</div>
+<footer>
+© AURION — Step Out. Grow Beyond. Become.
+</footer>
 
 <script>
-function nextPage(num){
-document.querySelectorAll('.page').forEach(p=>{
-p.classList.remove('active');
-});
-document.getElementById('page'+num).classList.add('active');
+// SCROLL ANIMATION
+const sections = document.querySelectorAll("section");
+
+function showSections(){
+sections.forEach(sec=>{
+const top = sec.getBoundingClientRect().top;
+if(top < window.innerHeight - 100){
+sec.classList.add("show");
 }
+});
+}
+
+window.addEventListener("scroll", showSections);
+showSections();
 </script>
 
 </body>
