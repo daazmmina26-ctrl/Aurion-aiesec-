@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AURION</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#05010f;
+color:white;
+overflow-x:hidden;
+}
+
+/* STAR BACKGROUND */
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+background:transparent;
+}
+
+.stars::before{
+content:"";
+position:absolute;
+width:200%;
+height:200%;
+box-shadow:
+0 0 2px #fff,
+120px 200px #fff,
+300px 500px #aaa,
+500px 100px #fff,
+700px 400px #00e0ff,
+900px 600px #fff;
+animation:move 60s linear infinite;
+}
+
+@keyframes move{
+from{transform:translateY(0);}
+to{transform:translateY(-1000px);}
+}
+
+/* START SCREEN */
+#startScreen{
+position:fixed;
+width:100%;
+height:100%;
+background:radial-gradient(circle,#1a0033,#05010f);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:999;
+text-align:center;
+}
+
+#startScreen h1{
+font-size:3rem;
+background:linear-gradient(90deg,#b400ff,#00e0ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+input{
+margin-top:20px;
+padding:12px;
+border:none;
+border-radius:10px;
+width:200px;
+text-align:center;
+outline:none;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:linear-gradient(90deg,#b400ff,#00e0ff);
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+/* GAME AREA */
+#game{
+display:none;
+padding-bottom:40px;
+}
+
+/* HEADER */
+header{
+text-align:center;
+padding:20px;
+}
+
+#score{
+color:#00e0ff;
+margin-top:5px;
+}
+
+/* LOGO SECTION */
+.logo-story{
+text-align:center;
+margin-top:20px;
+padding:20px;
+}
+
+.logo-wrap{
+position:relative;
+display:inline-block;
+}
+
+.logo{
+width:120px;
+height:120px;
+border-radius:50%;
+animation:spin 6s linear infinite;
+filter:drop-shadow(0 0 20px #b400ff);
+}
+
+.pulse{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:140px;
+height:140px;
+border-radius:50%;
+border:2px solid #00e0ff;
+animation:pulse 2s infinite;
+}
+
+@keyframes spin{
+0%{transform:rotate(0);}
+100%{transform:rotate(360deg);}
+}
+
+@keyframes pulse{
+0%{transform:translate(-50%,-50%) scale(0.8);opacity:0.6;}
+100%{transform:translate(-50%,-50%) scale(1.4);opacity:0;}
+}
+
+/* MISSIONS */
+.container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+padding:20px;
+}
+
+.zone{
+width:200px;
+height:140px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.1);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+transition:0.3s;
+}
+
+.zone:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px #00e0ff;
+}
+
+.locked{
+opacity:0.4;
+pointer-events:none;
+filter:blur(2px);
+}
+
+/* POPUP */
+#popup{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#111;
+padding:10px 15px;
+border-radius:12px;
+border:1px solid #00e0ff;
+display:none;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:30px;
+opacity:0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<!-- START SCREEN -->
+<div id="startScreen">
+<h1>AURION GAME</h1>
+<p>Enter your name</p>
+<input id="nameInput" placeholder="Player name">
+<button onclick="startGame()">START</button>
+</div>
+
+<!-- GAME -->
+<div id="game">
+
+<header>
+<h2 id="player"></h2>
+<h3 id="score">Energy: 0</h3>
+</header>
+
+<!-- LOGO STORY -->
+<div class="logo-story">
+
+<div class="logo-wrap">
+<img src="file_00000000c11872439eaec95d9b1e6a1f.png" class="logo">
+<div class="pulse"></div>
+</div>
+
+<p style="opacity:0.8;max-width:600px;margin:10px auto;">
+AURION represents an infinite cosmic universe of creativity, energy, and evolution.
+</p>
+
+</div>
+
+<!-- MISSIONS -->
+<div class="container">
+
+<div class="zone" onclick="zone(1)">
+<h3>🌌 Core</h3>
+<p>Explore</p>
+</div>
+
+<div class="zone locked" id="z2" onclick="zone(2)">
+<h3>⚡ Energy</h3>
+<p>Unlock 50</p>
+</div>
+
+<div class="zone locked" id="z3" onclick="zone(3)">
+<h3>🪐 Secret</h3>
+<p>Unlock 120</p>
+</div>
+
+</div>
+
+<footer>
+© 2026 AURION • LC Oran
+<br>
+<a style="color:#00e0ff" href="https://www.instagram.com/lc.oran?igsh=MTlvampoMnZqeGFjNw==" target="_blank">
+Instagram
+</a>
+</footer>
+
+</div>
+
+<!-- POPUP -->
+<div id="popup"></div>
+
+<script>
+
+let energy = 0;
+let name = "";
+
+function startGame(){
+name = document.getElementById("nameInput").value;
+
+if(name === ""){
+alert("Enter name");
+return;
+}
+
+document.getElementById("startScreen").style.display="none";
+document.getElementById("game").style.display="block";
+
+document.getElementById("player").innerText = "Player: " + name;
+
+show("Welcome " + name);
+}
+
+function show(text){
+let p = document.getElementById("popup");
+p.innerText = text;
+p.style.display="block";
+
+setTimeout(()=>p.style.display="none",2000);
+}
+
+function update(){
+document.getElementById("score").innerText = "Energy: " + energy;
+
+if(energy >= 50){
+document.getElementById("z2").classList.remove("locked");
+}
+if(energy >= 120){
+document.getElementById("z3").classList.remove("locked");
+}
+}
+
+function zone(n){
+if(n===1){energy+=10;show("+10 Energy");}
+if(n===2){energy+=25;show("+25 Energy");}
+if(n===3){energy+=50;show("SECRET +50");}
+
+update();
+}
+
+</script>
+
+</body>
+</html>
