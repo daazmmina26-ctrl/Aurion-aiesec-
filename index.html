@@ -20,6 +20,7 @@ body{
 background:#050814;
 color:white;
 overflow-x:hidden;
+scroll-behavior:smooth;
 }
 
 /* BACKGROUND */
@@ -55,10 +56,16 @@ opacity:0.85;
 line-height:1.7;
 }
 
-/* BUTTON */
+.logo-hero{
+width:120px;
+margin:20px 0;
+filter:drop-shadow(0 0 20px #00c2ff);
+}
+
+/* BUTTONS */
 button{
-margin-top:25px;
-padding:14px 28px;
+margin:10px;
+padding:12px 22px;
 border:none;
 border-radius:30px;
 background:linear-gradient(90deg,#00c2ff,#b400ff);
@@ -91,7 +98,6 @@ opacity:0.85;
 line-height:1.8;
 }
 
-/* CARD */
 .card{
 margin-top:20px;
 padding:20px;
@@ -113,7 +119,6 @@ transition:0.3s;
 transform:scale(1.05);
 }
 
-/* FOOTER */
 footer{
 padding:50px;
 text-align:center;
@@ -131,18 +136,27 @@ opacity:0.5;
 
 <h1>AURION</h1>
 
+<img src="file_00000000c11872439eaec95d9b1e6a1f.png" class="logo-hero">
+
 <p>
-You don’t stay in your orbit.
-<br>
+You don’t stay in your orbit.<br>
 You break it.
 </p>
 
-<p style="opacity:0.6; margin-top:10px;">
+<p style="opacity:0.6;">
 Aura × Orion = a mindset, not a name.
 </p>
 
 <button onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
-Discover
+Story
+</button>
+
+<button onclick="document.getElementById('logo').scrollIntoView({behavior:'smooth'})">
+Logo Meaning
+</button>
+
+<button onclick="document.getElementById('journey').scrollIntoView({behavior:'smooth'})">
+My Journey
 </button>
 
 </div>
@@ -168,8 +182,8 @@ AURION is the moment you stop saying "maybe one day" and take the first step �
 </p>
 </section>
 
-<!-- LOGO MEANING -->
-<section>
+<!-- LOGO -->
+<section id="logo">
 <h2>The Logo Meaning</h2>
 
 <div class="card">
@@ -182,17 +196,8 @@ AURION is the moment you stop saying "maybe one day" and take the first step �
 <img src="file_00000000c11872439eaec95d9b1e6a1f.png" class="logo">
 </section>
 
-<!-- WHY -->
-<section>
-<h2>Why AURION?</h2>
-
-<p>
-Because growth starts when comfort ends. AURION is the decision to move forward before you feel ready.
-</p>
-</section>
-
-<!-- MY JOURNEY -->
-<section>
+<!-- JOURNEY -->
+<section id="journey">
 <h2>My Journey</h2>
 
 <p>
@@ -207,8 +212,8 @@ Through my experience with AIESEC, I was exposed to new environments and situati
 
 <p>
 I met peopel 👥️ who showed me what real leadership looks like .through their confidence .descipline.and mindset. 
-  i started to understand the importance of stepping out of my comfort zone and growing through challenges  
-  from here . i created this logo .they were my guiding stars ⭐️ who inspiring me to grow ...
+i started to understand the importance of stepping out of my comfort zone and growing through challenges  
+from here . i created this logo .they were my guiding stars ⭐️ who inspiring me to grow ...
 </p>
 
 <p>
@@ -217,6 +222,10 @@ And because of that, I decided to try new things instead of staying in my comfor
 
 </div>
 </section>
+
+<footer>
+© AURION — Step out. Grow beyond.
+</footer>
 
 </body>
 </html>
