@@ -15,13 +15,62 @@ box-sizing:border-box;
 font-family:Poppins,sans-serif;
 }
 
-body{
+html,body{
+scroll-behavior:smooth;
 background:#050814;
 color:white;
 overflow-x:hidden;
 }
 
-/* ===== BACKGROUND ===== */
+/* ===== FIX: LOCK FIRST SCREEN PROPERLY ===== */
+#intro{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:radial-gradient(circle at top,#0b1a3a,#050814);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+z-index:9999;
+padding:20px;
+}
+
+#intro h1{
+font-size:4rem;
+background:linear-gradient(90deg,#fff,#00c2ff,#b400ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+#intro p{
+max-width:600px;
+margin-top:15px;
+opacity:0.85;
+line-height:1.6;
+}
+
+#intro button{
+margin-top:25px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:linear-gradient(90deg,#00c2ff,#b400ff);
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+#intro button:hover{
+transform:scale(1.1);
+box-shadow:0 0 20px #00c2ff;
+}
+
+/* BACKGROUND */
 .stars{
 position:fixed;
 width:100%;
@@ -50,7 +99,7 @@ from{transform:translateY(0);}
 to{transform:translateY(-1000px);}
 }
 
-/* ===== HERO ===== */
+/* HERO AFTER ENTER */
 .hero{
 height:100vh;
 display:flex;
@@ -63,20 +112,16 @@ padding:20px;
 
 h1{
 font-size:4rem;
-letter-spacing:3px;
-background:linear-gradient(90deg,#ffffff,#00c2ff,#b400ff);
+background:linear-gradient(90deg,#fff,#00c2ff,#b400ff);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-animation:fade 1.5s ease;
 }
 
-/* STRONG DEFINITION (IMPORTANT FOR WINNING) */
 .definition{
 max-width:700px;
 margin-top:20px;
-font-size:1.1rem;
-opacity:0.9;
 line-height:1.7;
+opacity:0.9;
 }
 
 .highlight{
@@ -84,32 +129,17 @@ color:#00c2ff;
 font-weight:600;
 }
 
-.quote{
-margin-top:15px;
-opacity:0.75;
-font-style:italic;
-}
-
-/* BUTTON */
 .btn{
 margin-top:25px;
 padding:12px 25px;
-border:none;
 border-radius:30px;
 background:linear-gradient(90deg,#00c2ff,#b400ff);
 color:white;
-font-weight:600;
-cursor:pointer;
-transition:0.3s;
 text-decoration:none;
+font-weight:600;
+display:inline-block;
 }
 
-.btn:hover{
-transform:scale(1.08);
-box-shadow:0 0 20px #00c2ff;
-}
-
-/* SECTIONS */
 section{
 padding:80px 20px;
 max-width:850px;
@@ -118,7 +148,6 @@ text-align:center;
 }
 
 h2{
-font-size:1.8rem;
 color:#00c2ff;
 margin-bottom:15px;
 }
@@ -128,7 +157,6 @@ opacity:0.85;
 line-height:1.7;
 }
 
-/* LOGO */
 .logo{
 width:120px;
 margin:20px auto;
@@ -142,12 +170,6 @@ animation:float 4s ease-in-out infinite;
 50%{transform:translateY(-10px);}
 }
 
-@keyframes fade{
-from{opacity:0;transform:translateY(10px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-/* CTA */
 .cta{
 padding:100px 20px;
 text-align:center;
@@ -158,7 +180,11 @@ footer{
 text-align:center;
 padding:40px;
 opacity:0.6;
-font-size:0.9rem;
+}
+
+/* IMPORTANT FIX FOR MOBILE JUMP BUG */
+body.loaded{
+overflow:auto;
 }
 </style>
 </head>
@@ -167,58 +193,56 @@ font-size:0.9rem;
 
 <div class="stars"></div>
 
-<!-- HERO -->
-<div class="hero">
-
+<!-- 🔒 INTRO (FIXES YOUR PROBLEM) -->
+<div id="intro">
 <h1>AURION</h1>
-
-<!-- 🔥 WINNING ELEMENT: INSTANT MEANING -->
-<p class="definition">
-AURION is a personal growth identity concept that represents the moment
-when a person <span class="highlight">steps out of their comfort zone</span>
-and begins expanding their potential beyond limits.
+<p>
+Step out. Grow beyond. Become AURION.
+<br><br>
+“You were never meant to stay in one orbit.”
 </p>
 
-<p class="quote">
-“Step out. Grow beyond. Become AURION.”
-</p>
-
-<a class="btn" href="#meaning">Discover the Meaning</a>
+<button onclick="startSite()">Explore Meaning</button>
 </div>
 
-<!-- MEANING -->
+<!-- MAIN SITE -->
+<div id="content" style="display:none;">
+
+<div class="hero">
+<h1>AURION</h1>
+
+<p class="definition">
+AURION is a personal growth identity that represents the moment a person
+<span class="highlight">steps out of their comfort zone</span>
+and expands into their full potential.
+</p>
+
+<a class="btn" href="#meaning">Continue</a>
+</div>
+
 <section id="meaning">
 <h2>What AURION Means</h2>
 <p>
-The name AURION is inspired by constellations and identity evolution.
-It represents the shift from a fixed life path into a self-created universe.
+AURION is inspired by constellations and human identity evolution.
+It represents breaking limits and redefining your path.
 </p>
 </section>
 
-<!-- LOGO -->
 <section>
 <h2>The Logo Story</h2>
-
 <img src="file_00000000c11872439eaec95d9b1e6a1f.png" class="logo">
-
 <p>
-The circle represents the comfort zone — a closed constellation of habits.
-The opening represents the decision to grow.
-The path represents experience and challenge.
-The stars represent the transformation you gain outside your limits.
+Circle = comfort zone. Opening = change. Path = growth. Stars = transformation.
 </p>
 </section>
 
-<!-- PHILOSOPHY -->
 <section>
 <h2>Growth Philosophy</h2>
 <p>
-Real growth starts when comfort ends. Leadership begins when uncertainty starts.
-AURION represents choosing expansion over limitation.
+Real growth begins when comfort ends. Leadership begins when uncertainty starts.
 </p>
 </section>
 
-<!-- TRANSFORMATION -->
 <section>
 <h2>Transformation</h2>
 <p>
@@ -226,12 +250,12 @@ AURION is the moment you stop following a fixed sky… and start creating your o
 </p>
 </section>
 
-<!-- CTA -->
 <div class="cta">
 <h2>Step out of your orbit.</h2>
 <p>Your universe is waiting.</p>
 
-<a class="btn" href="https://www.instagram.com/lc.oran?igsh=MTlvampoMnZqeGFjNw==" target="_blank">
+<a class="btn" target="_blank"
+href="https://www.instagram.com/lc.oran?igsh=MTlvampoMnZqeGFjNw==">
 Become AURION
 </a>
 </div>
@@ -239,6 +263,16 @@ Become AURION
 <footer>
 © 2026 AURION • LC Oran
 </footer>
+
+</div>
+
+<script>
+function startSite(){
+document.getElementById("intro").style.display="none";
+document.getElementById("content").style.display="block";
+window.scrollTo(0,0);
+}
+</script>
 
 </body>
 </html>
