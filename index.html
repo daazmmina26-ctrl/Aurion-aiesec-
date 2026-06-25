@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>AURION</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -16,18 +16,18 @@ font-family:Poppins,sans-serif;
 }
 
 body{
-background:#05010f;
+background:#050814;
 color:white;
 overflow-x:hidden;
 }
 
-/* STAR BACKGROUND */
+/* ===== BACKGROUND ===== */
 .stars{
 position:fixed;
 width:100%;
 height:100%;
 z-index:-1;
-background:transparent;
+background:radial-gradient(circle at top,#0b1a3a,#050814);
 }
 
 .stars::before{
@@ -35,12 +35,13 @@ content:"";
 position:absolute;
 width:200%;
 height:200%;
+background:transparent;
 box-shadow:
 0 0 2px #fff,
-120px 200px #fff,
+100px 200px #fff,
 300px 500px #aaa,
 500px 100px #fff,
-700px 400px #00e0ff,
+700px 300px #00c2ff,
 900px 600px #fff;
 animation:move 60s linear infinite;
 }
@@ -50,165 +51,113 @@ from{transform:translateY(0);}
 to{transform:translateY(-1000px);}
 }
 
-/* START SCREEN */
-#startScreen{
-position:fixed;
-width:100%;
-height:100%;
-background:radial-gradient(circle,#1a0033,#05010f);
+/* ===== HERO ===== */
+.hero{
+height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-z-index:999;
 text-align:center;
+padding:20px;
 }
 
-#startScreen h1{
-font-size:3rem;
-background:linear-gradient(90deg,#b400ff,#00e0ff);
+h1{
+font-size:4rem;
+letter-spacing:4px;
+background:linear-gradient(90deg,#ffffff,#00c2ff,#b400ff);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+animation:fadeIn 2s ease;
 }
 
-input{
-margin-top:20px;
-padding:12px;
-border:none;
-border-radius:10px;
-width:200px;
-text-align:center;
-outline:none;
+.subtitle{
+font-size:1.2rem;
+opacity:0.8;
+margin-top:10px;
 }
 
-button{
+.quote{
 margin-top:20px;
+opacity:0.7;
+font-style:italic;
+}
+
+/* BUTTON */
+.btn{
+margin-top:25px;
 padding:12px 25px;
 border:none;
 border-radius:30px;
-background:linear-gradient(90deg,#b400ff,#00e0ff);
+background:linear-gradient(90deg,#00c2ff,#b400ff);
 color:white;
 font-weight:600;
 cursor:pointer;
 transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.1);
-}
-
-/* GAME AREA */
-#game{
-display:none;
-padding-bottom:40px;
-}
-
-/* HEADER */
-header{
-text-align:center;
-padding:20px;
-}
-
-#score{
-color:#00e0ff;
-margin-top:5px;
-}
-
-/* LOGO SECTION */
-.logo-story{
-text-align:center;
-margin-top:20px;
-padding:20px;
-}
-
-.logo-wrap{
-position:relative;
+text-decoration:none;
 display:inline-block;
 }
 
+.btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 20px #00c2ff;
+}
+
+/* SECTIONS */
+section{
+padding:80px 20px;
+max-width:900px;
+margin:auto;
+text-align:center;
+}
+
+h2{
+font-size:2rem;
+margin-bottom:15px;
+color:#00c2ff;
+}
+
+p{
+opacity:0.85;
+line-height:1.7;
+margin-top:10px;
+}
+
+/* LOGO SECTION */
 .logo{
 width:120px;
-height:120px;
-border-radius:50%;
-animation:spin 6s linear infinite;
-filter:drop-shadow(0 0 20px #b400ff);
+margin:20px auto;
+display:block;
+filter:drop-shadow(0 0 15px #00c2ff);
+animation:float 4s ease-in-out infinite;
 }
 
-.pulse{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-width:140px;
-height:140px;
-border-radius:50%;
-border:2px solid #00e0ff;
-animation:pulse 2s infinite;
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
 }
 
-@keyframes spin{
-0%{transform:rotate(0);}
-100%{transform:rotate(360deg);}
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
 }
 
-@keyframes pulse{
-0%{transform:translate(-50%,-50%) scale(0.8);opacity:0.6;}
-100%{transform:translate(-50%,-50%) scale(1.4);opacity:0;}
+/* CTA */
+.cta{
+padding:100px 20px;
+text-align:center;
+background:rgba(255,255,255,0.02);
 }
 
-/* MISSIONS */
-.container{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:15px;
-padding:20px;
+.cta h2{
+font-size:2.2rem;
 }
 
-.zone{
-width:200px;
-height:140px;
-border-radius:20px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(10px);
-border:1px solid rgba(255,255,255,0.1);
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-cursor:pointer;
-transition:0.3s;
-}
-
-.zone:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px #00e0ff;
-}
-
-.locked{
-opacity:0.4;
-pointer-events:none;
-filter:blur(2px);
-}
-
-/* POPUP */
-#popup{
-position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-background:#111;
-padding:10px 15px;
-border-radius:12px;
-border:1px solid #00e0ff;
-display:none;
-}
-
-/* FOOTER */
 footer{
 text-align:center;
-padding:30px;
+padding:40px;
 opacity:0.6;
+font-size:0.9rem;
 }
 </style>
 </head>
@@ -217,118 +166,71 @@ opacity:0.6;
 
 <div class="stars"></div>
 
-<!-- START SCREEN -->
-<div id="startScreen">
-<h1>AURION GAME</h1>
-<p>Enter your name</p>
-<input id="nameInput" placeholder="Player name">
-<button onclick="startGame()">START</button>
+<!-- HERO -->
+<div class="hero">
+<h1>AURION</h1>
+<p class="subtitle">Step out. Grow beyond. Become AURION.</p>
+<p class="quote">“You were never meant to stay in one orbit.”</p>
+
+<a class="btn" href="#meaning">Explore Meaning</a>
 </div>
 
-<!-- GAME -->
-<div id="game">
-
-<header>
-<h2 id="player"></h2>
-<h3 id="score">Energy: 0</h3>
-</header>
+<!-- MEANING -->
+<section id="meaning">
+<h2>Meaning of AURION</h2>
+<p>
+AURION is inspired by constellations, identity, and human potential.
+It represents the moment a person chooses to break limits and redefine their path.
+It is not about leaving comfort — it is about expanding who you are.
+</p>
+</section>
 
 <!-- LOGO STORY -->
-<div class="logo-story">
+<section>
+<h2>The Logo Story</h2>
 
-<div class="logo-wrap">
 <img src="file_00000000c11872439eaec95d9b1e6a1f.png" class="logo">
-<div class="pulse"></div>
-</div>
 
-<p style="opacity:0.8;max-width:600px;margin:10px auto;">
-AURION represents an infinite cosmic universe of creativity, energy, and evolution.
+<p>
+The circle represents the comfort zone — a closed constellation.
+The opening represents the decision to grow beyond limits.
+The path symbolizes the journey of experience, learning, and challenge.
+The stars represent what we gain outside: confidence, skills, and opportunities.
 </p>
+</section>
 
-</div>
+<!-- PHILOSOPHY -->
+<section>
+<h2>Growth Philosophy</h2>
+<p>
+Comfort zones feel safe, but they limit expansion.
+Real growth happens when you step into uncertainty.
+Leadership begins when you choose movement over stillness.
+AURION is that decision.
+</p>
+</section>
 
-<!-- MISSIONS -->
-<div class="container">
+<!-- TRANSFORMATION -->
+<section>
+<h2>Transformation Message</h2>
+<p>
+AURION is the moment you stop following a fixed sky… and start creating your own.
+</p>
+</section>
 
-<div class="zone" onclick="zone(1)">
-<h3>🌌 Core</h3>
-<p>Explore</p>
-</div>
+<!-- CTA -->
+<div class="cta">
+<h2>Step out of your orbit.</h2>
+<p>Your universe is waiting.</p>
 
-<div class="zone locked" id="z2" onclick="zone(2)">
-<h3>⚡ Energy</h3>
-<p>Unlock 50</p>
-</div>
-
-<div class="zone locked" id="z3" onclick="zone(3)">
-<h3>🪐 Secret</h3>
-<p>Unlock 120</p>
-</div>
-
+<a class="btn" href="https://www.instagram.com/lc.oran?igsh=MTlvampoMnZqeGFjNw==" target="_blank">
+Become AURION
+</a>
 </div>
 
 <footer>
 © 2026 AURION • LC Oran
-<br>
-<a style="color:#00e0ff" href="https://www.instagram.com/lc.oran?igsh=MTlvampoMnZqeGFjNw==" target="_blank">
-Instagram
-</a>
 </footer>
-
-</div>
-
-<!-- POPUP -->
-<div id="popup"></div>
-
-<script>
-
-let energy = 0;
-let name = "";
-
-function startGame(){
-name = document.getElementById("nameInput").value;
-
-if(name === ""){
-alert("Enter name");
-return;
-}
-
-document.getElementById("startScreen").style.display="none";
-document.getElementById("game").style.display="block";
-
-document.getElementById("player").innerText = "Player: " + name;
-
-show("Welcome " + name);
-}
-
-function show(text){
-let p = document.getElementById("popup");
-p.innerText = text;
-p.style.display="block";
-
-setTimeout(()=>p.style.display="none",2000);
-}
-
-function update(){
-document.getElementById("score").innerText = "Energy: " + energy;
-
-if(energy >= 50){
-document.getElementById("z2").classList.remove("locked");
-}
-if(energy >= 120){
-document.getElementById("z3").classList.remove("locked");
-}
-}
-
-function zone(n){
-if(n===1){energy+=10;show("+10 Energy");}
-if(n===2){energy+=25;show("+25 Energy");}
-if(n===3){energy+=50;show("SECRET +50");}
-
-update();
-}
-
-</script>
 
 </body>
 </html>
