@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>AURION</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -15,59 +16,10 @@ box-sizing:border-box;
 font-family:Poppins,sans-serif;
 }
 
-html,body{
-scroll-behavior:smooth;
+body{
 background:#050814;
 color:white;
-overflow-x:hidden;
-}
-
-/* ===== FIX: LOCK FIRST SCREEN PROPERLY ===== */
-#intro{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:radial-gradient(circle at top,#0b1a3a,#050814);
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-z-index:9999;
-padding:20px;
-}
-
-#intro h1{
-font-size:4rem;
-background:linear-gradient(90deg,#fff,#00c2ff,#b400ff);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-#intro p{
-max-width:600px;
-margin-top:15px;
-opacity:0.85;
-line-height:1.6;
-}
-
-#intro button{
-margin-top:25px;
-padding:12px 25px;
-border:none;
-border-radius:30px;
-background:linear-gradient(90deg,#00c2ff,#b400ff);
-color:white;
-font-weight:600;
-cursor:pointer;
-transition:0.3s;
-}
-
-#intro button:hover{
-transform:scale(1.1);
-box-shadow:0 0 20px #00c2ff;
+overflow:hidden;
 }
 
 /* BACKGROUND */
@@ -79,72 +31,37 @@ z-index:-1;
 background:radial-gradient(circle at top,#0b1a3a,#050814);
 }
 
-.stars::before{
-content:"";
+/* PAGES */
+.page{
 position:absolute;
-width:200%;
-height:200%;
-box-shadow:
-0 0 2px #fff,
-120px 200px #fff,
-300px 500px #aaa,
-500px 100px #fff,
-700px 300px #00c2ff,
-900px 600px #fff;
-animation:move 60s linear infinite;
-}
-
-@keyframes move{
-from{transform:translateY(0);}
-to{transform:translateY(-1000px);}
-}
-
-/* HERO AFTER ENTER */
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:none;
 justify-content:center;
 align-items:center;
+flex-direction:column;
 text-align:center;
 padding:20px;
 }
 
+.page.active{
+display:flex;
+animation:fade 0.6s ease;
+}
+
+@keyframes fade{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* TEXT */
 h1{
-font-size:4rem;
+font-size:3.5rem;
 background:linear-gradient(90deg,#fff,#00c2ff,#b400ff);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-}
-
-.definition{
-max-width:700px;
-margin-top:20px;
-line-height:1.7;
-opacity:0.9;
-}
-
-.highlight{
-color:#00c2ff;
-font-weight:600;
-}
-
-.btn{
-margin-top:25px;
-padding:12px 25px;
-border-radius:30px;
-background:linear-gradient(90deg,#00c2ff,#b400ff);
-color:white;
-text-decoration:none;
-font-weight:600;
-display:inline-block;
-}
-
-section{
-padding:80px 20px;
-max-width:850px;
-margin:auto;
-text-align:center;
 }
 
 h2{
@@ -153,38 +70,62 @@ margin-bottom:15px;
 }
 
 p{
-opacity:0.85;
+max-width:600px;
+opacity:0.9;
 line-height:1.7;
 }
 
+/* BUTTON */
+button{
+margin-top:25px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:linear-gradient(90deg,#00c2ff,#b400ff);
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+box-shadow:0 0 15px #00c2ff;
+}
+
+/* LOGO */
 .logo{
-width:120px;
-margin:20px auto;
-display:block;
+width:130px;
+margin:25px 0;
 filter:drop-shadow(0 0 15px #00c2ff);
-animation:float 4s ease-in-out infinite;
+transition:0.3s;
 }
 
-@keyframes float{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-10px);}
+.logo:hover{
+transform:scale(1.1) rotate(3deg);
 }
 
-.cta{
-padding:100px 20px;
-text-align:center;
-background:rgba(255,255,255,0.02);
+/* MEANING BOX */
+.meaning-box{
+margin-top:20px;
+display:flex;
+flex-direction:column;
+gap:12px;
+text-align:left;
 }
 
-footer{
-text-align:center;
-padding:40px;
-opacity:0.6;
+.item{
+display:flex;
+align-items:center;
+gap:12px;
+background:rgba(255,255,255,0.04);
+padding:12px;
+border-radius:10px;
 }
 
-/* IMPORTANT FIX FOR MOBILE JUMP BUG */
-body.loaded{
-overflow:auto;
+.icon{
+font-size:1.4rem;
+color:#00c2ff;
 }
 </style>
 </head>
@@ -193,84 +134,109 @@ overflow:auto;
 
 <div class="stars"></div>
 
-<!-- 🔒 INTRO (FIXES YOUR PROBLEM) -->
-<div id="intro">
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
 <h1>AURION</h1>
+
 <p>
 Step out. Grow beyond. Become AURION.
 <br><br>
-“You were never meant to stay in one orbit.”
+"You were never meant to stay in one orbit."
 </p>
 
-<button onclick="startSite()">Explore Meaning</button>
+<button onclick="nextPage(2)">Start</button>
 </div>
 
-<!-- MAIN SITE -->
-<div id="content" style="display:none;">
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+<h2>What is AURION?</h2>
 
-<div class="hero">
-<h1>AURION</h1>
-
-<p class="definition">
-AURION is a personal growth identity that represents the moment a person
-<span class="highlight">steps out of their comfort zone</span>
-and expands into their full potential.
-</p>
-
-<a class="btn" href="#meaning">Continue</a>
-</div>
-
-<section id="meaning">
-<h2>What AURION Means</h2>
 <p>
-AURION is inspired by constellations and human identity evolution.
-It represents breaking limits and redefining your path.
+AURION represents the moment a person steps out of their comfort zone
+and begins their journey toward growth and self-discovery.
 </p>
-</section>
 
-<section>
-<h2>The Logo Story</h2>
+<button onclick="nextPage(3)">Next</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+<h2>The Logo Meaning</h2>
+
+<div class="meaning-box">
+
+<div class="item">
+<span class="icon">◯</span>
+<p><strong>Circle:</strong> Comfort zone</p>
+</div>
+
+<div class="item">
+<span class="icon">➚</span>
+<p><strong>Path:</strong> Growth journey</p>
+</div>
+
+<div class="item">
+<span class="icon">🚶</span>
+<p><strong>Figure:</strong> Taking the first step</p>
+</div>
+
+<div class="item">
+<span class="icon">✦</span>
+<p><strong>Star:</strong> New opportunities</p>
+</div>
+
+</div>
+
 <img src="file_00000000c11872439eaec95d9b1e6a1f.png" class="logo">
-<p>
-Circle = comfort zone. Opening = change. Path = growth. Stars = transformation.
-</p>
-</section>
 
-<section>
+<button onclick="nextPage(4)">Next</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
 <h2>Growth Philosophy</h2>
-<p>
-Real growth begins when comfort ends. Leadership begins when uncertainty starts.
-</p>
-</section>
 
-<section>
-<h2>Transformation</h2>
 <p>
-AURION is the moment you stop following a fixed sky… and start creating your own.
+Real growth begins when comfort ends.
+Leadership begins when uncertainty starts.
 </p>
-</section>
 
-<div class="cta">
+<button onclick="nextPage(5)">Next</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+<h2>My Experience</h2>
+
+<p>
+Through AIESEC, I realized that growth is not comfortable.
+This project reflects my personal journey of stepping out,
+meeting new people, and discovering new perspectives.
+<br><br>
+<strong>This is not just a project. This is who I am becoming.</strong>
+</p>
+
+<button onclick="nextPage(6)">Final</button>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="page6">
 <h2>Step out of your orbit.</h2>
+
 <p>Your universe is waiting.</p>
 
-<a class="btn" target="_blank"
-href="https://www.instagram.com/lc.oran?igsh=MTlvampoMnZqeGFjNw==">
-Become AURION
+<a href="https://www.instagram.com/lc.oran?igsh=MTlvampoMnZqeGFjNw==" target="_blank">
+<button>Become AURION</button>
 </a>
 </div>
 
-<footer>
-© 2026 AURION • LC Oran
-</footer>
-
-</div>
-
 <script>
-function startSite(){
-document.getElementById("intro").style.display="none";
-document.getElementById("content").style.display="block";
-window.scrollTo(0,0);
+function nextPage(num){
+document.querySelectorAll('.page').forEach(p=>{
+p.classList.remove('active');
+});
+
+document.getElementById('page'+num).classList.add('active');
 }
 </script>
 
