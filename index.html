@@ -20,6 +20,7 @@ body{
 background:#050814;
 color:white;
 overflow-x:hidden;
+scroll-behavior:smooth;
 }
 
 /* BACKGROUND */
@@ -55,10 +56,16 @@ opacity:0.85;
 line-height:1.7;
 }
 
-/* BUTTON */
+.logo-hero{
+width:120px;
+margin:20px 0;
+filter:drop-shadow(0 0 20px #00c2ff);
+}
+
+/* BUTTONS */
 button{
-margin-top:25px;
-padding:14px 28px;
+margin:10px;
+padding:12px 22px;
 border:none;
 border-radius:30px;
 background:linear-gradient(90deg,#00c2ff,#b400ff);
@@ -91,7 +98,6 @@ opacity:0.85;
 line-height:1.8;
 }
 
-/* CARD */
 .card{
 margin-top:20px;
 padding:20px;
@@ -113,38 +119,29 @@ transition:0.3s;
 transform:scale(1.05);
 }
 
-/* ⭐ STAR ANIMATION TEXT */
-.star-sentence{
-font-size:1.1rem;
-line-height:1.8;
-margin-top:10px;
-}
-
-.star-sentence span{
-color:#ffd700;
-position:relative;
+/* ⭐ GLOW EFFECT */
+.star-glow{
 animation:glow 2s infinite ease-in-out;
+color:#ffd700;
+font-weight:600;
+display:inline-block;
 }
 
-/* glow animation */
 @keyframes glow{
 0%{
 text-shadow:0 0 5px #ffd700, 0 0 10px #ffd700;
 opacity:0.7;
 }
-
 50%{
 text-shadow:0 0 15px #ffd700, 0 0 25px #00c2ff;
 opacity:1;
 }
-
 100%{
 text-shadow:0 0 5px #ffd700, 0 0 10px #ffd700;
 opacity:0.7;
 }
 }
 
-/* FOOTER */
 footer{
 padding:50px;
 text-align:center;
@@ -159,18 +156,32 @@ opacity:0.5;
 
 <!-- HERO -->
 <div class="hero">
+
 <h1>AURION</h1>
 
+<img src="file_00000000c11872439eaec95d9b1e6a1f.png" class="logo-hero">
+
 <p>
-Step Out. Grow Beyond. Become AURION.
-<br><br>
-AURION is a mindset born from the moment you decide to leave your comfort zone
-and start aiming beyond your limits.
+You don’t stay in your orbit.<br>
+You break it.
+</p>
+
+<p style="opacity:0.6;">
+Aura × Orion = a mindset, not a name.
 </p>
 
 <button onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
-Start
+Story
 </button>
+
+<button onclick="document.getElementById('logo').scrollIntoView({behavior:'smooth'})">
+Logo Meaning
+</button>
+
+<button onclick="document.getElementById('journey').scrollIntoView({behavior:'smooth'})">
+My Journey
+</button>
+
 </div>
 
 <!-- STORY -->
@@ -194,8 +205,8 @@ AURION is the moment you stop saying "maybe one day" and take the first step �
 </p>
 </section>
 
-<!-- LOGO MEANING -->
-<section>
+<!-- LOGO -->
+<section id="logo">
 <h2>The Logo Meaning</h2>
 
 <div class="card">
@@ -209,11 +220,11 @@ AURION is the moment you stop saying "maybe one day" and take the first step �
 </section>
 
 <!-- JOURNEY -->
-<section>
+<section id="journey">
 <h2>My Journey</h2>
 
 <p>
-Stepping from your comfort zone is hard but I still did it, and my first project was good so I tried again.
+Stepping out from ure cirle comfort zone its hard but still did my first project was good that i did try again
 </p>
 
 <div class="card">
@@ -223,20 +234,25 @@ Through my experience with AIESEC, I was exposed to new environments and situati
 </p>
 
 <p>
-I met peopel 👥️ who showed me what real leadership looks like through their confidence, discipline, and mindset. I started to understand the importance of stepping out of my comfort zone and growing through challenges.
+I met peopel 👥️ who showed me what real leadership looks like .through their confidence .descipline.and mindset. 
+i started to understand the importance of stepping out of my comfort zone and growing through challenges  
+from here . i created this logo . 
 </p>
 
-<p class="star-sentence">
-I created this logo because they were my guiding stars ⭐️
-<span>who inspired me to grow</span>
+<p class="star-glow">
+they were my guiding stars ⭐️ who inspired me to grow
 </p>
 
 <p>
-And because of that, I decided to try new things instead of staying in my comfort zone.
+And because of that, I decided to try new things instead of staying in my comfort zone.(hated my comfort zone so bad but still glued to it)
 </p>
 
 </div>
 </section>
+
+<footer>
+© AURION — Step out. Grow beyond.
+</footer>
 
 </body>
 </html>
